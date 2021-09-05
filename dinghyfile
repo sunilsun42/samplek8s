@@ -58,7 +58,7 @@
       "moniker": {
         "app": "sampleapp"
       },
-      "name": "DeployNginx1",
+      "name": "DeployNginx134",
       "namespaceOverride": "dev",
       "notifications": [],
       "refId": "2",
