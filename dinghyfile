@@ -1,100 +1,46 @@
 {
-  "expectedArtifacts": [],
-  "keepWaitingPipelines": false,
-  "lastModifiedBy": "admin",
-  "limitConcurrent": true,
-  "parameterConfig": [],
-  "spelEvaluator": "v4",
-  "stages": [
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "comments": "This is the deployment stage , It will create 2 replicas.",
-      "manifestArtifact": {
-        "artifactAccount": "github",
-        "id": "d7408914-85db-4ed3-9638-49475efda4e6",
-        "name": "deploy.yaml",
-        "reference": "https://api.github.com/repos/sunilsun42/samplek8s/contents/deploy.yaml",
-        "type": "github/file",
-        "version": "main"
-      },
-      "manifests": [
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "name": "nginx"
-          },
-          "spec": {
-            "replicas": 2,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "nginx:1.14.2",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "sampleapp"
-      },
-      "name": "DeployNginx134",
-      "namespaceOverride": "dev",
-      "notifications": [],
-      "refId": "2",
-      "requiredArtifactIds": [],
-      "requiredArtifacts": [],
-      "requisiteStageRefIds": [],
-      "restrictExecutionDuringTimeWindow": false,
-      "restrictedExecutionWindow": {
-        "days": [
-          1
+  "application": "helloworldapp",
+  "globals": {
+    "save_app_on_update": true
+  },
+  "spec": {
+    "appmetadata": {
+      "dataSources": {
+        "enabled": [
+          "securityGroups",
+          "loadBalancers",
+          "executions",
+          "serverGroups"
+        ],
+        "disabled": [
+          "canaryConfigs"
         ]
       },
-      "sendNotifications": true,
-      "skipExpressionEvaluation": false,
-      "source": "artifact",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false,
-          "services": []
+      "cloudProviders": [
+        "kubernetes",
+        "aws"
+      ],
+      "customBanners": [
+        {
+          "backgroundColor": "var(--color-alert)",
+          "enabled": true,
+          "text": "Your custom banner text",
+          "textColor": "var(--color-text-on-dark)"
         }
-      },
-      "type": "deployManifest"
+      ]
     }
-  ],
-  "triggers": [
+  },
+  "pipelines": [
     {
-      "branch": "main",
-      "enabled": true,
-      "expectedArtifactIds": [],
-      "project": "sunilsun42",
-      "secret": "sunny",
-      "slug": "samplek8s",
-      "source": "github",
-      "type": "git"
+      "application": "helloworldapp",
+      "name": "my-pipeline-name",
+      "stages": [
+        {
+          "name": "one",
+          "type": "wait",
+          "waitTime": 10
+        }
+      ]
     }
-  ],
-  "updateTs": "1630671949404"
+  ]
 }
