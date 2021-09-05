@@ -1,5 +1,5 @@
 {
-  "application": "helloworldapp",
+  "application": "helloworldapps",
   "globals": {
     "save_app_on_update": true
   },
